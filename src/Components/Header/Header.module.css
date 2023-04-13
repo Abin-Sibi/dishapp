@@ -1,0 +1,14 @@
+.headerTop{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    background-color: brown;
+  }
+  .headerButtons{
+    padding: auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: fit-content; /* Make sure the width is not wider than the contents */
+  }
+  
