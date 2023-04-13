@@ -1,6 +1,13 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom';
+import styles from '../Header/Header.module.css'
+import axios from 'axios';
+import Dishes from '../Dish/Dishes';
 
-function HeaderList() {
+function HeaderList({category}) {
+    const { pathname } = useLocation();
+    const [dishes,setDishes] = useState([])
+    
     const headerNav = [
         {
           display: "Salads and Soup",
@@ -8,25 +15,38 @@ function HeaderList() {
         },
         {
           display: "From the BarnYard",
-          path: "/SeeAll",
+          path: "/dish",
         },
         {
           display: "From the Hen House",
-          path: "/tv",
+          path: "/",
         },
         {
             display: "Fresh from the sea",
-            path: "/tv",
+            path: "/",
           },
       ];
+    const dishList = ((Dishdata)=>{
+        console.log(Dishdata,'l')
+        setDishes(Dishdata)
+     })
+
+
+      
   return (
     <div>
-    <ul className="header__nav mb-0">
-    {headerNav.map((e, i) => (
-      <li key={i} className={`${i === active ? "active" : ""}`}>
-        <Link to={e.path}>{e.display}</Link>
-      </li>
-    ))}</ul>
+    <div className={styles.headerList}>
+    
+        {category.map((categoryname)=>{
+            return(
+                <Link  className={styles.nonactive} onClick={()=>{dishList(categoryname.category_dishes)}}>{categoryname.menu_category}<div ><hr className={ styles.ddash }/></div></Link>
+            )
+            
+        })}
+        
+        
+   </div>
+   <Dishes dishes={dishes} />
     </div>
   )
 }

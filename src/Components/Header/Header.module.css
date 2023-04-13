@@ -10,5 +10,37 @@
     align-items: center;
     justify-content: flex-end;
     width: fit-content; /* Make sure the width is not wider than the contents */
+    
   }
   
+  .active{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: red;
+  }
+
+  .headerList{
+    display: flex;
+    padding-left: 50px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    gap:300px
+
+  }
+
+  .nonactive{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+/*   
+  hr {
+    width: 100%;
+    border: none;
+    border-top: 1px solid black;
+  } */

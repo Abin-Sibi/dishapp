@@ -1,6 +1,7 @@
 import React from 'react'
 import {FaShoppingCart} from 'react-icons/fa'
 import styles from '../Header/Header.module.css'
+import HeaderList from './HeaderList'
 
 function Header() {
   return (
