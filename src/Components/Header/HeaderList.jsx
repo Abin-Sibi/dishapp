@@ -7,6 +7,7 @@ import Dishes from '../Dish/Dishes';
 function HeaderList({category}) {
     const { pathname } = useLocation();
     const [dishes,setDishes] = useState([])
+    const [cat,setCat] = useState()
     
     const headerNav = [
         {
@@ -26,8 +27,9 @@ function HeaderList({category}) {
             path: "/",
           },
       ];
-    const dishList = ((Dishdata)=>{
+    const dishList = ((Dishdata,category)=>{
         console.log(Dishdata,'l')
+        setCat(category)
         setDishes(Dishdata)
      })
 
@@ -39,14 +41,14 @@ function HeaderList({category}) {
     
         {category.map((categoryname)=>{
             return(
-                <Link  className={styles.nonactive} onClick={()=>{dishList(categoryname.category_dishes)}}>{categoryname.menu_category}<div ><hr className={ styles.ddash }/></div></Link>
+                <Link  className={styles.nonactive} onClick={()=>{dishList(categoryname.category_dishes,categoryname.menu_category)}}>{categoryname.menu_category}<div ><hr className={ styles.ddash }/></div></Link>
             )
             
         })}
         
         
    </div>
-   <Dishes dishes={dishes} />
+   <Dishes dishes={dishes} cat={cat}/>
     </div>
   )
 }
