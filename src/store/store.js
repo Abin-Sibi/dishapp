@@ -1,8 +1,8 @@
-// import { configureStore } from '@reduxjs/toolkit'
-// import DishReducer from '../Reducers/DishDataReducer'
+import { configureStore } from '@reduxjs/toolkit'
+import CartCountReducer from '../Redux/CartCountReducer'
 
-// export const store = configureStore({
-//   reducer: {
-//     dish :DishReducer
-//   },
-// })
+export const store = configureStore({
+  reducer: {
+    cartCount :CartCountReducer
+  },
+})

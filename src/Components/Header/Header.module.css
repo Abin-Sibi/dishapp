@@ -4,8 +4,13 @@
     width: 100%;
     background-color: brown;
   }
+
+  .title{
+    padding-left: 25px;
+  }
   .headerButtons{
-    padding: auto;
+    padding-right: 25px;
+    gap: 10px;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -13,30 +18,80 @@
     
   }
   
-  .active{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: red;
-  }
 
   .headerList{
     display: flex;
-    padding-left: 50px;
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
-    gap:300px
+    cursor: pointer;
+
 
   }
 
+  .headerList::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .headerList::-webkit-scrollbar-track {
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    height: 2px;
+
+  }
+  
+  /* Style the scrollbar thumb */
+  .headerList::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
   .nonactive{
     display: flex;
+    height: 50px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding-left: 130px;
+    padding-right: 100px;
+    /* border-bottom: 1px solid red; */
+
   }
+
+  .active{
+    display: flex;
+    height: 50px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 5px solid red;
+    padding-left: 130px;
+    padding-right: 100px;
+
+  }
+
+  @media (max-width: 768px) {
+    .active {
+      padding-left: 80px;
+      padding-right: 60px;
+    }
+    .nonactive {
+        padding-left: 80px;
+        padding-right: 60px;
+      }
+  }
+  
+  @media (max-width: 480px) {
+    .active {
+      padding-left: 40px;
+      padding-right: 20px;
+    }
+    .nonactive {
+        padding-left: 40px;
+        padding-right: 20px;
+      }
+  }
+
+  
 
 /*   
   hr {

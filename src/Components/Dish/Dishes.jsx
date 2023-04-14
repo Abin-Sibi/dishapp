@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import {createStoreHook, useDispatch} from 'react-redux'
 import './Dishes.css'
+import { cartDetails, cartremoveDetails } from '../../Redux/CartCountReducer'
 
-function Dishes({ dishes, Cat }) {
+function Dishes({ dishes}) {
+  console.log(dishes, 'kkk')
+  const dispatch = useDispatch()
   const initialQuantities = {};
-  dishes.forEach(dish => {
+  dishes?.forEach(dish => {
     initialQuantities[dish.dish_id] = 0;
   });
   console.log(initialQuantities, 'kkk')
   const [quantities, setQuantities] = useState(initialQuantities);
-  const [totalDishesCount, setTotalDishesCount] = useState(0);
 
   function incrementQuantity(dishId) {
     const quantity = parseInt(quantities[dishId]) || 0;
@@ -17,6 +20,7 @@ function Dishes({ dishes, Cat }) {
       ...prevQuantities,
       [dishId]: quantity + 1,
     }));
+    dispatch(cartDetails(quantity+1,dishId))
   }
 
   function decrementQuantity(dishId) {
@@ -25,12 +29,13 @@ function Dishes({ dishes, Cat }) {
       ...prevQuantities,
       [dishId]: Math.max(0, quantity - 1),
     }));
+
+    dispatch(cartremoveDetails(quantity-1,dishId))
   }
 
   return (
     <>
-      <div>Total:{totalDishesCount}</div>
-      {dishes.map((dish, index) => {
+      {dishes && dishes.map((dish, index) => {
         return (
           <div key={index} className="ticket3">
             <div className={dish.dish_Type === 1 ? 'vegSymbolNon' : 'vegSymbol'}>
@@ -38,9 +43,9 @@ function Dishes({ dishes, Cat }) {
               </div>
             </div>
             <div className="firsthalf">
-              <div>{dish.dish_name}</div>
-              <div>{dish.dish_currency} {dish.dish_price}</div>
-              <div>{dish.dish_description}</div>
+              <div className='dishName'>{dish.dish_name}</div>
+              <div><strong>{dish.dish_currency} {dish.dish_price}</strong></div>
+              <span className='description'>{dish.dish_description}</span>
               {dish.dish_Availability ?
                 <div className='quantityButton'>
                   <span onClick={() => { decrementQuantity(dish.dish_id) }}>-</span>
@@ -57,7 +62,7 @@ function Dishes({ dishes, Cat }) {
               </div>
             </div>
             <div className="secondhalf">
-              <div>
+              <div className='calories'>
                 {dish.dish_calories} calories
               </div>
               <div className='dishImage'>

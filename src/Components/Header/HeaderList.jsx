@@ -1,54 +1,39 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom';
 import styles from '../Header/Header.module.css'
-import axios from 'axios';
 import Dishes from '../Dish/Dishes';
 
 function HeaderList({category}) {
-    const { pathname } = useLocation();
     const [dishes,setDishes] = useState([])
-    const [cat,setCat] = useState()
+    const [select,setSelect] = useState(false)
+    console.log(category[0],'pppooo')
+    useEffect(() => {
+        dishList(category?.[0]?.category_dishes,0)
+    }, [category])
     
-    const headerNav = [
-        {
-          display: "Salads and Soup",
-          path: "/",
-        },
-        {
-          display: "From the BarnYard",
-          path: "/dish",
-        },
-        {
-          display: "From the Hen House",
-          path: "/",
-        },
-        {
-            display: "Fresh from the sea",
-            path: "/",
-          },
-      ];
-    const dishList = ((Dishdata,category)=>{
-        console.log(Dishdata,'l')
-        setCat(category)
+    
+    
+    const dishList = ((Dishdata,index)=>{
         setDishes(Dishdata)
+        setSelect(index)
      })
-
-
-      
   return (
     <div>
     <div className={styles.headerList}>
     
-        {category.map((categoryname)=>{
+        {category.map((categoryname,index)=>{
             return(
-                <Link  className={styles.nonactive} onClick={()=>{dishList(categoryname.category_dishes,categoryname.menu_category)}}>{categoryname.menu_category}<div ><hr className={ styles.ddash }/></div></Link>
+                <div key={index} className={select===index?styles.active:styles.nonactive}>
+                    <div   
+                onClick={()=>{dishList(categoryname.category_dishes,index)}}>{categoryname.menu_category}</div>
+                </div>
+                
             )
             
         })}
         
         
    </div>
-   <Dishes dishes={dishes} cat={cat}/>
+   <Dishes dishes={dishes}/>
     </div>
   )
 }
