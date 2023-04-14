@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import {FaShoppingCart} from 'react-icons/fa'
 import Badge from '@mui/material/Badge';
 import styles from '../Header/Header.module.css'
-import HeaderList from './HeaderList'
 import { useSelector } from 'react-redux'
 
 function Header() {

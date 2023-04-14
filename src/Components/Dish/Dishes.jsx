@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
-import {createStoreHook, useDispatch} from 'react-redux'
+import React, {  useState } from 'react'
+import { useDispatch} from 'react-redux'
 import './Dishes.css'
 import { cartDetails, cartremoveDetails } from '../../Redux/CartCountReducer'
 
