@@ -107,5 +107,13 @@
         
       }
   }
+
+  @media screen and (max-width: 395px) {
+    .quantityButton {
+      max-width: 100px;
+      font-size: 0.8rem;
+      margin: 2px;
+    }
+  }
   
   
