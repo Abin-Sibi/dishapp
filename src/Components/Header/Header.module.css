@@ -2,11 +2,21 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
-    background-color: rgb(215, 200, 200);
+    background-color: rgb(249, 245, 245);
   }
 
   .title{
-    padding-left: 25px;
+    display: flex;
+    padding-left: 5px;
+    gap: 15px;
+    font-weight: 400;
+  }
+
+  .arrowDiv{
+    display: flex;
+    align-items: center;
+
+
   }
   .headerButtons{
     padding-right: 25px;
@@ -14,7 +24,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    width: fit-content; /* Make sure the width is not wider than the contents */
+    width: fit-content; 
     
   }
   
@@ -40,7 +50,6 @@
 
   }
   
-  /* Style the scrollbar thumb */
   .headerList::-webkit-scrollbar-thumb {
     background-color: rgba(0, 0, 0, 0.1);
     border-radius: 10px;
@@ -91,11 +100,16 @@
       }
   }
 
+  @media only screen and (max-width: 480px) {
+    .arrow { 
+      display: flex;
+          align-items: center;
+    }
+  }
   
-
-/*   
-  hr {
-    width: 100%;
-    border: none;
-    border-top: 1px solid black;
-  } */
+  @media only screen and (min-width: 481px) {
+    .arrow {
+      display: none;
+    }
+  }
+  

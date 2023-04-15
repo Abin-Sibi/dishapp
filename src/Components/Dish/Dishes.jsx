@@ -10,14 +10,14 @@ function Dishes({ dishes}) {
     initialQuantities[dish.dish_id] = 0;
   });
   const [quantities, setQuantities] = useState(initialQuantities);
-
+  const [total, setTotal] = useState(1);
   function incrementQuantity(dishId) {
     const quantity = parseInt(quantities[dishId]) || 0;
     setQuantities(prevQuantities => ({
       ...prevQuantities,
       [dishId]: quantity + 1,
     }));
-    dispatch(cartDetails(quantity+1,dishId))
+    dispatch(cartDetails(total))
   }
 
   function decrementQuantity(dishId) {
@@ -26,14 +26,17 @@ function Dishes({ dishes}) {
       ...prevQuantities,
       [dishId]: Math.max(0, quantity - 1),
     }));
-
-    dispatch(cartremoveDetails(quantity-1,dishId))
+     if(quantities[dishId]>0){
+      dispatch(cartremoveDetails(total))
+     }
+    
   }
 
   return (
     <>
       {dishes && dishes.map((dish, index) => {
         return (
+          <>
           <div key={index} className={style.main}>
             <div className={dish.dish_Type === 1 ? style.vegSymbolNon : style.vegSymbol}>
               <div className={dish.dish_Type === 1 ? style.circleNon : style.circle}>
@@ -67,6 +70,8 @@ function Dishes({ dishes}) {
               </div>
             </div>
           </div>
+          <hr/>
+          </>
         )
       })}
     </>

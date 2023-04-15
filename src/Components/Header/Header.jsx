@@ -1,5 +1,6 @@
 import React from 'react'
 import {FaShoppingCart} from 'react-icons/fa'
+import {IoMdArrowBack} from 'react-icons/io'
 import Badge from '@mui/material/Badge';
 import styles from '../Header/Header.module.css'
 import { useSelector } from 'react-redux'
@@ -10,7 +11,7 @@ function Header() {
     <> 
     <div className={styles.headerTop}>
          <div className={styles.title}>
-        <h2>UNI Resto Cafe</h2>
+         <div className={styles.arrowDiv} ><IoMdArrowBack className={styles.arrow}/></div><h3>UNI Resto Cafe</h3>
     </div>
     <div className={styles.headerButtons}>
         <span>My Orders</span>
