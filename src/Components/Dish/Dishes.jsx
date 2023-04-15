@@ -1,16 +1,14 @@
 import React, {  useState } from 'react'
 import { useDispatch} from 'react-redux'
-import './Dishes.css'
+import style from'./Dishes.module.css'
 import { cartDetails, cartremoveDetails } from '../../Redux/CartCountReducer'
 
 function Dishes({ dishes}) {
-  console.log(dishes, 'kkk')
   const dispatch = useDispatch()
   const initialQuantities = {};
   dishes?.forEach(dish => {
     initialQuantities[dish.dish_id] = 0;
   });
-  console.log(initialQuantities, 'kkk')
   const [quantities, setQuantities] = useState(initialQuantities);
 
   function incrementQuantity(dishId) {
@@ -36,35 +34,35 @@ function Dishes({ dishes}) {
     <>
       {dishes && dishes.map((dish, index) => {
         return (
-          <div key={index} className="ticket3">
-            <div className={dish.dish_Type === 1 ? 'vegSymbolNon' : 'vegSymbol'}>
-              <div className={dish.dish_Type === 1 ? 'circleNon' : 'circle'}>
+          <div key={index} className={style.main}>
+            <div className={dish.dish_Type === 1 ? style.vegSymbolNon : style.vegSymbol}>
+              <div className={dish.dish_Type === 1 ? style.circleNon : style.circle}>
               </div>
             </div>
-            <div className="firsthalf">
-              <div className='dishName'>{dish.dish_name}</div>
+            <div className={style.firsthalf}>
+              <div className={style.dishName}>{dish.dish_name}</div>
               <div><strong>{dish.dish_currency} {dish.dish_price}</strong></div>
-              <span className='description'>{dish.dish_description}</span>
+              <span className={style.description}>{dish.dish_description}</span>
               {dish.dish_Availability ?
-                <div className='quantityButton'>
+                <div className={style.quantityButton}>
                   <span onClick={() => { decrementQuantity(dish.dish_id) }}>-</span>
-                  <span className='quantity'>{quantities[dish.dish_id] ? quantities[dish.dish_id] : '0'}</span>
+                  <span className={style.quantity}>{quantities[dish.dish_id] ? quantities[dish.dish_id] : '0'}</span>
                   <span onClick={() => { incrementQuantity(dish.dish_id) }}>+</span>
                 </div>
                 : ""
               }
               <div>
                 {dish.dish_Availability ?
-                  <span>{dish.addonCat.length > 0 ? <span>Customization Available</span> : ""}</span>
-                  : <span>Not Available</span>
+                  <span>{dish.addonCat.length > 0 ? <span style={{color:"red"}}>Customization Available</span> : ""}</span>
+                  : <span style={{marginTop:"5px",color:"red"}}>Not Available</span>
                 }
               </div>
             </div>
-            <div className="secondhalf">
-              <div className='calories'>
+            <div className={style.secondhalf}>
+              <div className={style.calories}>
                 {dish.dish_calories} calories
               </div>
-              <div className='dishImage'>
+              <div className={style.dishImage}>
                 <img src={dish.dish_image} alt={dish.dish_name} />
               </div>
             </div>

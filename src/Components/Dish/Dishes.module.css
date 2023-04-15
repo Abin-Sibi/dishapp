@@ -1,11 +1,11 @@
-.ticket3{
+.main{
     border-radius: 20px;
     margin: 10px 10px 10px 10px;
     display: flex;
     flex-direction: row;
     height: 130px;
-    background-color: rgb(8, 8, 8);
-    color: rgb(254, 251, 251);
+    background-color: rgb(250, 246, 246);
+    color: rgb(10, 10, 10);
     padding:10px;
     
   }
@@ -44,6 +44,7 @@
     text-align: center;
     background-color: green;
     border-radius: 10px;
+    color: white;
     margin: 5px;
     max-width: 150px;
     cursor: pointer;
@@ -102,8 +103,8 @@
   }
   
   @media (max-width: 480px) {
-    .ticket3{
-        height: 150px;
+    .main{
+        height: auto
         
       }
   }
@@ -114,6 +115,32 @@
       font-size: 0.8rem;
       margin: 2px;
     }
+    .description{
+        max-width:'50px'; 
+        width: 210px;
+        word-wrap: 'break-word';
+      }
+      .calories{
+        padding-top: 8px;
+         text-align: center;
+       }
+
+       img {
+        width: 70px;
+        height: 70px;
+        padding-right: 3px;
+      }
+      .secondhalf{
+        padding: 10px;
+        gap:10px;
+      
+      }
+
+      .dishName{
+        font-size: large;
+        font-weight: 500;
+        width: 200px;
+      }
   }
   
   

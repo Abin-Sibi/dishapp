@@ -10,23 +10,23 @@ export const cartSlice = createSlice({
     initialState,
     reducers: {
         addItem: (state, action) => {
-            try{
+            try {
                 const item = action.payload;
-                const cartItems = JSON.parse(JSON.stringify(state.cartItems)); // create a deep copy
+                const cartItems = JSON.parse(JSON.stringify(state.cartItems)); 
                 const existingItemIndex = cartItems.findIndex((cartItem) => cartItem.id === item.id);
                 if (existingItemIndex !== -1) {
                     cartItems[existingItemIndex].quantity++;
                 } else {
                     cartItems.push({ ...item, quantity: 1 });
                 }
-                console.log(cartItems); // log the modified array
-                state.cartItems = cartItems; 
-                state.cartTotal=cartItems.length
-            }catch(error){
+                console.log(cartItems);
+                state.cartItems = cartItems;
+                state.cartTotal = cartItems.length
+            } catch (error) {
                 console.log(error)
             }
-            
-            
+
+
         },
         removeItem: (state, action) => {
             const item = action.payload;
@@ -35,7 +35,7 @@ export const cartSlice = createSlice({
                 (cartItem) => cartItem.id === item.id
             );
             if (existingItemIndex !== -1) {
-                console.log('cartItems',existingItemIndex);
+                console.log('cartItems', existingItemIndex);
                 const existingItem = cartItems[existingItemIndex];
 
                 if (existingItem.quantity === 1) {
@@ -43,38 +43,31 @@ export const cartSlice = createSlice({
                 } else {
                     existingItem.quantity--;
                 }
-                console.log(cartItems); 
                 state.cartItems = cartItems;
-                state.cartTotal=cartItems.length
+                state.cartTotal = cartItems.length
             }
-        },
-        clearCart: (state) => {
-            state.cartItems = [];
-            state.cartTotal = 0;
         },
     },
 });
 
-export const cartDetails = (data,id) => async (dispatch) => {
+export const cartDetails = (data, id) => async (dispatch) => {
     try {
-        console.log(data,id,"reducxdkfojf")
-        const item = {data,id}
-    dispatch(addItem(item))
+        const item = { data, id }
+        dispatch(addItem(item))
     } catch (error) {
-        console.log(error,'error inthe redux')
+        console.log(error, 'error inthe redux')
     }
-  }
+}
 
-  export const cartremoveDetails = (data,id) => async (dispatch) => {
+export const cartremoveDetails = (data, id) => async (dispatch) => {
     try {
-        console.log(data,id,"reducxdkfojf")
-        const item = {data,id}
-    dispatch(removeItem(item))
+        const item = { data, id }
+        dispatch(removeItem(item))
     } catch (error) {
-        console.log(error,'error inthe redux')
+        console.log(error, 'error inthe redux')
     }
-  }
-  
+}
+
 
 export const { addItem, removeItem, clearCart } = cartSlice.actions;
 
