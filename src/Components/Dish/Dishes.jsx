@@ -10,7 +10,7 @@ function Dishes({ dishes}) {
     initialQuantities[dish.dish_id] = 0;
   });
   const [quantities, setQuantities] = useState(initialQuantities);
-  const [total, setTotal] = useState(1);
+  const [total] = useState(1);
   function incrementQuantity(dishId) {
     const quantity = parseInt(quantities[dishId]) || 0;
     setQuantities(prevQuantities => ({
